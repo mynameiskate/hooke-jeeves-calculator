@@ -2,6 +2,7 @@ from hooke_jeeves import HookeJeevesMethod
 
 
 def func(point):
+    """Example 5D function"""
     return (4000 / point[0] + 8 * point[0]
             + 7200 / point[1] + 4 * point[1]
             + 8800 / point[2] + 4 * point[2]

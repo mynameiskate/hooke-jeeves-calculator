@@ -3,11 +3,11 @@ class Vector:
         self.values = values
 
     def __repr__(self):
-        result = '('
+        result = ''
         for value in self.values:
-            result += str.format(' {0}', value)
+            result += ' {}'.format(value)
 
-        return result + ' )'
+        return '(' + result + ' )'
 
     def __add__(self, other):
         assert(len(self.values) == len(other.values))

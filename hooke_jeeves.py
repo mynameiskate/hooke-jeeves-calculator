@@ -6,6 +6,13 @@ class HookeJeevesMethod:
         self.func = func
 
     def _calc_next_point(self, point, delta, e):
+        """Calculates next point in one of the N dimensions
+
+        :param point: previously calculated point
+        :param delta: step between points
+        :param e: base vector
+        :return: next base point
+        """
         current_value = self.func(point)
 
         if self.func(point + delta * e) < current_value:
@@ -16,6 +23,15 @@ class HookeJeevesMethod:
             return point
 
     def calculate(self, eps, speed=2, division_step=2):
+        """Minimizes function with N variables using
+            Hooke-Jeeves method
+
+        :param eps: level of function accuracy
+        :param speed: speed coefficient
+        :param division_step: step division coefficient
+        :return: list of all intermediate points with
+            the last one as result
+        """
         result = []
         delta = 1
         e = [Vector([1, 0, 0, 0, 0]),
