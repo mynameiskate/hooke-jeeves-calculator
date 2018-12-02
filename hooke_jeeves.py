@@ -56,7 +56,7 @@ class HookeJeevesMethod:
                 y = [x[-1]]
             else:
                 x.append(y[-1])
-                y = [x[-1] + speed * (x[-1] - x[-2])]
+                y = [y[0] + speed * (x[-1] - x[-2])]
 
                 if ((abs(self.func(x[-1]) - self.func(y[-1])) < eps)
                         or (x[-1].module(y[-1]) < eps)):

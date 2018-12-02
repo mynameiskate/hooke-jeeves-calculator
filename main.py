@@ -1,5 +1,5 @@
 from hooke_jeeves import HookeJeevesMethod
-
+from vector import Vector
 
 def func(point):
     """Example 5D function"""
@@ -23,3 +23,4 @@ count = 0
 for point in result:
     print_iteration(point, count)
     count += 1
+
