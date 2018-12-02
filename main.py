@@ -17,7 +17,7 @@ def print_iteration(x, step):
     print('_' * 100)
 
 
-result = HookeJeevesMethod(func).calculate(0.00001)
+result = HookeJeevesMethod(func, 5).calculate(0.00001)
 count = 0
 
 for point in result:

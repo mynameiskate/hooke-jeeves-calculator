@@ -2,8 +2,14 @@ from vector import Vector
 
 
 class HookeJeevesMethod:
-    def __init__(self, func):
+    def __init__(self, func, dimensions):
+        """
+        :param func: target function
+        :param dimensions: the amount of dimensions
+            (function variables
+        """
         self.func = func
+        self.dimensions = dimensions
 
     def _calc_next_point(self, point, delta, e):
         """Calculates next point in one of the N dimensions
@@ -34,25 +40,20 @@ class HookeJeevesMethod:
         """
         result = []
         delta = 1
-        e = [Vector([1, 0, 0, 0, 0]),
-             Vector([0, 1, 0, 0, 0]),
-             Vector([0, 0, 1, 0, 0]),
-             Vector([0, 0, 0, 1, 0]),
-             Vector([0, 0, 0, 0, 1])]
-
-        x = [Vector([1, 1, 1, 1, 1])]
-        y = [Vector([1, 1, 1, 1, 1])]
+        e = Vector.diag(Vector.ones(self.dimensions))
+        x = [Vector.ones(self.dimensions)]
+        y = [Vector.ones(self.dimensions)]
 
         while True:
             result.append(x[-1])
 
-            for index in range(0, len(e)):
+            for index in range(0, self.dimensions):
                 y.append(self._calc_next_point(y[-1], delta, e[index]))
 
             if not (self.func(y[-1]) < self.func(x[-1])):
                 delta /= division_step
-                y = [x[-1]]
                 x.append(x[-1])
+                y = [x[-1]]
             else:
                 x.append(y[-1])
                 y = [x[-1] + speed * (x[-1] - x[-2])]
